@@ -43,7 +43,7 @@ def Train_GAN(dataset, n_epoch, n_pre_epoch, batch_size, wdecay, L,  NAME = None
 	d_loss_real = tf.losses.hinge_loss( logits = Dreal, labels = tf.ones_like(Dreal)) +  d_loss_regularization
 	d_loss_fake = tf.losses.hinge_loss( logits = Dfake, labels = tf.zeros_like(Dfake)) +  d_loss_regularization
 	eps = 0.0001
-	g_loss_feature_matching = (tf.norm(Freal,ord = 2)/(tf.norm(Ffake,ord=2)+eps))  - tf.log(tf.norm(Ffake,ord = 2)/(tf.norm(Freal,ord =2)+ eps)) -1
+	g_loss_feature_matching = (tf.norm(Ffake,ord = 2)/(tf.norm(Freal,ord=2)+eps))  - tf.log(tf.norm(Ffake,ord = 2)/(tf.norm(Freal,ord =2)+ eps)) -1
 	g_loss_L2 = Rg*tf.norm(weigts_g,ord=2)
 	g_loss_regularization = g_loss_L2 + g_loss_feature_matching
 	g_loss = tf.losses.hinge_loss(logits = Dfake, labels = tf.ones_like(Dfake))
@@ -143,8 +143,7 @@ def Train_GAN(dataset, n_epoch, n_pre_epoch, batch_size, wdecay, L,  NAME = None
 		print('predictionReal = ', np.mean(predictionReal))
 		print('Gloss =', Gloss)
 		print('GlossRegularization = ', GlossRegularization)
-		print('max(Gofz) =', max(GofZ[0]))
-		print('min(Gofz) = ', min(GofZ[0]))
+		
 		
 
 
